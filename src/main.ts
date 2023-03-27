@@ -1,7 +1,7 @@
 import { UNLOCK_THOUGHT_CONTROL } from './constants/command';
 import { Markup, Telegraf } from 'telegraf';
 import { env } from './utils/env';
-import { create, send } from './conversation';
+import { send } from './conversation';
 import { editMessage } from './bot';
 import { UNLOCK_THOUGHT_CONTROL_MESSAGE } from './constants/message';
 
@@ -19,12 +19,12 @@ bot.start(async (ctx) => {
     [Markup.button.callback(UNLOCK_THOUGHT_CONTROL, UNLOCK_THOUGHT_CONTROL)],
   ]);
 
-  try {
-    // Create a conversation for the user
-    await create(ctx.from.id);
-  } catch (e) {
-    return ctx.reply('❌ Please check ChatGPT token.');
-  }
+  // try {
+  //   // Create a conversation for the user
+  //   await create(ctx.from.id);
+  // } catch (e) {
+  //   return ctx.reply('❌ Please check ChatGPT token.');
+  // }
 
   // Reply to the user with a greeting and the keyboard
   return ctx.reply(`Hello ${ctx.from?.first_name}! Let's chat`, keyboard);
@@ -53,14 +53,7 @@ bot.on('text', async (ctx) => {
       try {
         const message = await ctx.sendMessage('typing..');
         // Send the message to chatGPT
-        const response = await send(id, text, (contents) =>
-          editMessage(
-            ctx,
-            message.chat.id,
-            message.message_id,
-            contents || 'typing...',
-          ),
-        );
+        const response = await send(text);
 
         // delete the message and send a new one to notice the user
         await Promise.all([
