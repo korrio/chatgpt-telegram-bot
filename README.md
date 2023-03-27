@@ -1,3 +1,13 @@
+# Instructions
+- git clone https://github.com/korrio/chatgpt-telegram-bot
+- สร้าง telegram bot และ เก็บ key => https://telegram.me/botfather
+- สร้าง chatgpt และ api key => https://platform.openai.com/account/api-keys
+- เอา key ที่ได้มาใส่ใน .env และ .env.prod 
+- yarn
+- yarn dev
+- ลองพิมพ์หาบอทดู
+
+
 # ChatGPT-Telegram-Bot
 
 ![img](./docs/images/screenshot.png ) <!-- alt = img -thumbnail -->
